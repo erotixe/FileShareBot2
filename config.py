@@ -39,7 +39,7 @@ TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 #start message
 START_MSG = os.environ.get("START_MESSAGE", "<b>Hello {first}\n\nI am a file store bot Powered by @Animes_xyz</b>.")
 try:
-    ADMINS=[]
+    ADMINS=[1803603990]
     for x in (os.environ.get("ADMINS", "5753413060").split()):
         ADMINS.append(int(x))
 except ValueError:
