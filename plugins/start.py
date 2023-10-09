@@ -88,7 +88,7 @@ async def start_command(client: Client, message: Message):
         reply_markup = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("‼️ About Me ‼️", callback_data = "about"),
+                    InlineKeyboardButton("‼⚔️ About Me ⚔️", callback_data = "about"),
                     InlineKeyboardButton("🫧 Close 🫧", callback_data = "close")
                 ]
             ]
@@ -169,7 +169,7 @@ async def send_text(client: Bot, message: Message):
         deleted = 0
         unsuccessful = 0
         
-        pls_wait = await message.reply("<i>Broadcasting Message.. This will Take Some Time</i>")
+        pls_wait = await message.reply("<i>Broadcast ho rha till then FUCK OFF </i>")
         for chat_id in query:
             try:
                 await broadcast_msg.copy(chat_id)
