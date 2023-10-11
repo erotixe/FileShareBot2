@@ -86,7 +86,7 @@ async def start_command(client: Client, message: Message):
         return
     else:
         reply_markup = InlineKeyboardMarkup(
-            [,
+            [
         [
             InlineKeyboardButton(text="⚡ 𝖩𝗈𝗂𝗇 𝖢𝗁𝖺𝗇𝗇𝖾𝗅 ⚡", url='https://t.me/Animes_Xyz'),
         ]
