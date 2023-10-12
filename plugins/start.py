@@ -87,17 +87,14 @@ async def start_command(client: Client, message: Message):
     else:
         reply_markup = InlineKeyboardMarkup(
             [
-                InlineKeyboardButton(
-                    text = 'Try Again',
-                    url = f"https://t.me/{client.username}?start={message.command[1]}"
-                )
-            ]
-        )
-            [
-                [
+    [
+        InlineKeyboardButton("Join Channel", url="https://t.me/Animes_Xyz"),
+    ],
+    [
                     InlineKeyboardButton("⚔️ About Me ⚔️", callback_data = "about"),
                     InlineKeyboardButton("🫧 Close 🫧", callback_data = "close")
-         ]
+        
+    ]
             ]
         )
         await message.reply_text(
