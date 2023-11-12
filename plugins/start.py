@@ -87,11 +87,16 @@ async def start_command(client: Client, message: Message):
     else:
         reply_markup = InlineKeyboardMarkup(
             [
-                [
-                    InlineKeyboardButton("😊 About Me", callback_data = "about"),
-                    InlineKeyboardButton("🔒 Close", callback_data = "close")
-                ]
+    [
+        InlineKeyboardButton("⚡ 𝖩𝗈𝗂𝗇 𝖢𝗁𝖺𝗇𝗇𝖾𝗅 ⚡", url="https://t.me/Animes_Xyz"),
+    ],
+    [
+                    InlineKeyboardButton("⚔️ About Me ⚔️", callback_data = "about"),
+                    InlineKeyboardButton("🫧 Close 🫧", callback_data = "close")
+        
+    ]
             ]
+        )
         await message.reply_text(
             text = START_MSG.format(
                 first = message.from_user.first_name,
@@ -121,8 +126,8 @@ REPLY_ERROR = """<code>Use this command as a reply to any telegram message with 
 async def not_joined(client: Client, message: Message):
     buttons = [
         [
-            InlineKeyboardButton(text=" Join Channel ", url=client.invitelink),
-            InlineKeyboardButton(text=" Join Channel ", url=client.invitelink2),
+            InlineKeyboardButton(text="⚡ Join Channel 1 ⚡", url=client.invitelink),
+            InlineKeyboardButton(text="⚡ Join Channel 2 ⚡", url=client.invitelink2),
         ]
     ]
     try:
@@ -156,7 +161,7 @@ async def get_users(client: Bot, message: Message):
     users = await full_userbase()
     await msg.edit(f"{len(users)} users are using this bot")
 
-@Bot.on_message(filters.private & filters.command('broadcast') & filters.user(ADMINS))
+@Bot.on_message(filters.private & filters.command('broadcast') & filters.user(OWNER_ID))
 async def send_text(client: Bot, message: Message):
     if message.reply_to_message:
         query = await full_userbase()
