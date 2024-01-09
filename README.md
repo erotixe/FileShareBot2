@@ -24,20 +24,14 @@
 * `PROTECT_CONTENT` Optional: True if you need to prevent files from forwarding
 
 ## 𝐶𝑜𝑚𝑚𝑎𝑛𝑑𝑠
+
 ```
-• /start - ᴛᴏ ꜱᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ
-• /about - ᴛᴏ ᴄʜᴇᴄᴋ ʙᴏᴛ ᴅᴇᴛᴀɪʟꜱ
-• /refer - ᴛᴏ ɪɴᴄʀᴇᴀꜱᴇ ʏᴏᴜʀ ᴘʟᴀɴ
-• /myplan - ᴛᴏ ᴄʜᴇᴄᴋ ʏᴏᴜʀ ᴘʟᴀɴꜱ ᴅᴇᴛᴀɪʟꜱ
-• /upgrade - ᴛᴏ ᴜᴘɢʀᴀᴅᴇ ʏᴏᴜʀ ᴘʟᴀɴ
-• /viewthumb - ᴛᴏ ᴠɪᴇᴡ ʏᴏᴜʀ ᴛʜᴜᴍʙɴᴀɪʟ
-• /delthumb - ᴛᴏ ᴅᴇʟᴇᴛᴇ ʏᴏᴜʀ ᴛʜᴜᴍʙɴᴀɪʟ
-• /set_caption - ᴛᴏ ꜱᴇᴛ ᴄᴜꜱᴛᴏᴍ ᴄᴀᴘᴛɪᴏɴ
-• /del_caption - ᴛᴏ ᴅᴇʟᴇᴛᴇ ᴄᴀᴘᴛɪᴏɴ
-• /see_caption - ᴛᴏ ᴄʜᴇᴄᴋ ᴄᴜʀʀᴇɴᴛ ᴄᴀᴘᴛɪᴏɴ
-• /broadcast - ꜱᴇɴᴅ ᴍᴇꜱꜱᴀɢᴇ ᴛᴏ ᴀʟʟ ᴜꜱᴇʀꜱ
-• /addpremium - ᴛᴏ ᴀᴅᴅ ᴘʀᴇᴍɪᴜᴍ ᴜꜱᴇʀꜱ
-• /resetpower - ᴛᴏ ʀᴇꜱᴇᴛ ᴜꜱᴇʀ ᴘʀᴇᴍɪᴜᴍ
+/start - start the bot or get posts
+/batch - create link for more than one posts
+/genlink - create link for one post
+/users - view bot statistics
+/broadcast - broadcast any messages to bot users
+/stats - checking your bot uptime
 ```
 
 <details>
