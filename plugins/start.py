@@ -88,8 +88,8 @@ async def start_command(client: Client, message: Message):
         reply_markup = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("😊 About Me", callback_data = "about"),
-                    InlineKeyboardButton("🔒 Close", callback_data = "close")
+                    InlineKeyboardButton("ᴀʙᴏᴜᴛ ᴍᴇ", callback_data = "about"),
+                    InlineKeyboardButton("ʟᴜᴄʏ", callback_data = "close")
                 ]
             ]
                 )
@@ -110,7 +110,7 @@ async def start_command(client: Client, message: Message):
 
 #=====================================================================================##
 
-WAIT_MSG = """"<b>Processing ....</b>"""
+WAIT_MSG = """"<b>Pʀᴏᴄᴇssɪɴɢ ....</b>"""
 
 REPLY_ERROR = """<code>Use this command as a reply to any telegram message with out any spaces.</code>"""
 
@@ -122,15 +122,15 @@ REPLY_ERROR = """<code>Use this command as a reply to any telegram message with 
 async def not_joined(client: Client, message: Message):
     buttons = [
         [
-            InlineKeyboardButton(text="Join Channel", url=client.invitelink),
-            InlineKeyboardButton(text="Join Channel", url=client.invitelink2),
+            InlineKeyboardButton(text="• ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ •", url=client.invitelink),
+            InlineKeyboardButton(text="• ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ •", url=client.invitelink2),
         ]
     ]
     try:
         buttons.append(
             [
                 InlineKeyboardButton(
-                    text = 'Try Again',
+                    text = '• ᴛʀʏ ᴀɢᴀɪɴ •',
                     url = f"https://t.me/{client.username}?start={message.command[1]}"
                 )
             ]
