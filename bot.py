@@ -12,7 +12,7 @@ from config import (
     APP_ID,
     CHANNEL_ID,
     FORCE_SUB_CHANNEL,
-    FORCE_SUB_GROUP,
+    FORCE_SUB_CHANNEL2,
     LOGGER,
     OWNER,
     TG_BOT_TOKEN,
@@ -72,24 +72,24 @@ class Bot(Client):
                 )
                 sys.exit()
 
-        if FORCE_SUB_GROUP:
+        if FORCE_SUB_CHANNEL2:
             try:
-                info = await self.get_chat(FORCE_SUB_GROUP)
+                info = await self.get_chat(FORCE_SUB_CHANNEL2)
                 link = info.invite_link
                 if not link:
-                    await self.export_chat_invite_link(FORCE_SUB_GROUP)
+                    await self.export_chat_invite_link(FORCE_SUB_CHANNEL2)
                     link = info.invite_link
                 self.invitelink2 = link
                 self.LOGGER(__name__).info(
-                    f"FORCE_SUB_GROUP detected!\n┌ Title: {info.title}\n└ Chat ID: {info.id}\n——"
+                    f"FORCE_SUB_CHANNEL2 detected!\n┌ Title: {info.title}\n└ Chat ID: {info.id}\n——"
                 )
             except Exception as a:
                 self.LOGGER(__name__).warning(a)
                 self.LOGGER(__name__).warning(
-                    "Bot tidak dapat Mengambil link invite dari FORCE_SUB_GROUP!"
+                    "Bot tidak dapat Mengambil link invite dari FORCE_SUB_CHANNEL2!"
                 )
                 self.LOGGER(__name__).warning(
-                    f"Pastikan @{self.username} adalah admin di Group Tersebut, Chat ID F-Subs Group Saat Ini: {FORCE_SUB_GROUP}"
+                    f"Pastikan @{self.username} adalah admin di Group Tersebut, Chat ID F-Subs Group Saat Ini: {FORCE_SUB_CHANNEL2}"
                 )
                 self.LOGGER(__name__).info(
                     "Bot Berhenti. Gabung Group https://t.me/SharingUserbot untuk Bantuan"
