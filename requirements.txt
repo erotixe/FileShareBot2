@@ -10,7 +10,3 @@ sqlalchemy==1.3.23
 TgCrypto
 wget
 aiohttp
-pyrogram
-Flask==2.2.2
-gunicorn==20.1.0
-aiohttp==3.8.2
