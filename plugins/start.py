@@ -16,6 +16,27 @@ from helper_func import subscribed, encode, decode, get_messages
 from database.database import add_user, del_user, full_userbase, present_user
 
 SECONDS = int(os.getenv("SECONDS", "10"))
+START_TIME = datetime.utcnow()
+START_TIME_ISO = START_TIME.replace(microsecond=0).isoformat()
+TIME_DURATION_UNITS = (
+    ("week", 60 * 60 * 24 * 7),
+    ("day", 60**2 * 24),
+    ("hour", 60**2),
+    ("min", 60),
+    ("sec", 1),
+)
+
+
+async def _human_time_duration(seconds):
+    if seconds == 0:
+        return "inf"
+    parts = []
+    for unit, div in TIME_DURATION_UNITS:
+        amount, seconds = divmod(int(seconds), div)
+        if amount > 0:
+            parts.append(f'{amount} {unit}{"" if amount == 1 else "s"}')
+    return ", ".join(parts)
+
 
 @Bot.on_message(filters.command('start') & filters.private & subscribed)
 async def start_command(client: Client, message: Message):
@@ -54,7 +75,7 @@ async def start_command(client: Client, message: Message):
                 ids = [int(int(argument[1]) / abs(client.db_channel.id))]
             except:
                 return
-        temp_msg = await message.reply("Please wait...")
+        temp_msg = await message.reply("Wait A Second...")
         try:
             messages = await get_messages(client, ids)
         except:
