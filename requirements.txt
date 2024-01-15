@@ -1,12 +1,3 @@
-# --- For-Bot-Working --------- #
-pyrogram
-TgCrypto
-pyromod==1.5
-# --- For-Database ------------ #
-pymongo
-dnspython
-# --- For-Web-Response ------- #
-aiohttp
 feedparser
 gitpython
 heroku3
@@ -16,4 +7,5 @@ python-dotenv
 Pyromod==1.5
 speedtest-cli
 sqlalchemy==1.3.23
+TgCrypto
 wget
