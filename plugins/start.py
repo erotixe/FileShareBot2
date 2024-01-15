@@ -80,7 +80,7 @@ async def start_command(client: Client, message: Message):
                 snt_msg = await msg.copy(chat_id=message.from_user.id, caption=caption, parse_mode=ParseMode.HTML, reply_markup=reply_markup,
                                           protect_content=PROTECT_CONTENT)
                 await snt_msg.reply_text(
-                    f"Files will be deleted in 30 minutes to avoid copyright issues. Please forward and save them.",
+                    f"ғɪʟᴇs ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 𝟹𝟶 ᴍɪɴᴜᴛᴇs ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ ɪssᴜᴇs. Pʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ᴀɴᴅ sᴀᴠᴇ ᴛʜᴇᴍ. - ᴍʏ ᴏᴡɴᴇʀ - @VeldXd",
                     disable_web_page_preview=True,
                     quote=True
                 )
