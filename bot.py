@@ -4,11 +4,21 @@ from aiohttp import web
 from plugins import web_server
 
 import pyromod.listen
-from pyrogram import Client
 import sys
-from datetime import datetime
 
-from config import API_HASH, APP_ID, LOGGER, TG_BOT_TOKEN, TG_BOT_WORKERS, FORCE_SUB_CHANNEL, FORCE_SUB_CHANNEL2, CHANNEL_ID, PORT
+from pyrogram import Client
+
+from config import (
+    API_HASH,
+    APP_ID,
+    CHANNEL_ID,
+    FORCE_SUB_CHANNEL,
+    FORCE_SUB_CHANNEL2,
+    LOGGER,
+    OWNER,
+    TG_BOT_TOKEN,
+    TG_BOT_WORKERS,
+)
 
 
 name ="""
