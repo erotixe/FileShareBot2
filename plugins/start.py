@@ -1,8 +1,3 @@
-#(©)CodeXBotz
-
-
-
-
 import os
 import asyncio
 from pyrogram import Client, filters, __version__
@@ -11,11 +6,14 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, 
 from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 
 from bot import Bot
-from config import ADMINS, OWNER_ID, FORCE_MSG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT
+from config import ADMINS, FORCE_MSG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, AUTO_DELETE_TIME, PROTECT_CONTENT
 from helper_func import subscribed, encode, decode, get_messages
 from database.database import add_user, del_user, full_userbase, present_user
 
-SECONDS = int(os.getenv("SECONDS", "30"))
+async def delete_after_delay(message: Message, delay):
+    await asyncio.sleep(AUTO_DELETE_TIME)
+    await message.delete()
+
 
 @Bot.on_message(filters.command('start') & filters.private & subscribed)
 async def start_command(client: Client, message: Message):
@@ -62,12 +60,10 @@ async def start_command(client: Client, message: Message):
             return
         await temp_msg.delete()
 
-        snt_msgs = []
-
         for msg in messages:
 
             if bool(CUSTOM_CAPTION) & bool(msg.document):
-                caption = CUSTOM_CAPTION.format(previouscaption="" if not msg.caption else msg.caption.html, filename=msg.document.file_name)
+                caption = CUSTOM_CAPTION.format(previouscaption = "" if not msg.caption else msg.caption.html, filename = msg.document.file_name)
             else:
                 caption = "" if not msg.caption else msg.caption.html
 
@@ -77,32 +73,11 @@ async def start_command(client: Client, message: Message):
                 reply_markup = None
 
             try:
-                snt_msg = await msg.copy(chat_id=message.from_user.id, caption=caption, parse_mode=ParseMode.HTML, reply_markup=reply_markup,
-                                          protect_content=PROTECT_CONTENT)
-                await snt_msg.reply_text(
-                    f"ғɪʟᴇs ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 𝟹𝟶 sᴇᴄᴏɴᴅs ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ ɪssᴜᴇs. Pʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ᴀɴᴅ sᴀᴠᴇ ᴛʜᴇᴍ. - ᴍʏ ᴏᴡɴᴇʀ - @VeldXd",
-                    disable_web_page_preview=True,
-                    quote=True
-                )
-                snt_msgs.append(snt_msg)
+                await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
+                await asyncio.sleep(0.5)
             except FloodWait as e:
                 await asyncio.sleep(e.x)
-                snt_msg = await msg.copy(chat_id=message.from_user.id, caption=caption, parse_mode=ParseMode.HTML, reply_markup=reply_markup,
-                                          protect_content=PROTECT_CONTENT)
-                snt_msgs.append(snt_msg)
-                await snt_msg.reply_text(
-                    f"ғɪʟᴇs ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 𝟹𝟶 sᴇᴄᴏɴᴅs ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ ɪssᴜᴇs. Pʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ᴀɴᴅ sᴀᴠᴇ ᴛʜᴇᴍ. - ᴘᴏᴡᴇʀᴇᴅ ʙʏ -- @Team_Netflix",
-                    disable_web_page_preview=True,
-                    quote=True
-                )
-            except:
-                pass
-
-        await asyncio.sleep(SECONDS)
-
-        for snt_msg in snt_msgs:
-            try:
-                await snt_msg.delete()
+                await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
             except:
                 pass
         return
@@ -157,7 +132,7 @@ async def not_joined(client: Client, message: Message):
         buttons.append(
             [
                 InlineKeyboardButton(
-                    text = 'ᴛʀʏ ᴀɢᴀɪɴ',
+                    text = 'Try Again',
                     url = f"https://telegram.me/{client.username}?start={message.command[1]}"
                 )
             ]
