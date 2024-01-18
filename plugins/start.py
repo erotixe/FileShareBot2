@@ -132,7 +132,7 @@ async def not_joined(client: Client, message: Message):
         buttons.append(
             [
                 InlineKeyboardButton(
-                    text = 'Try Again',
+                    text = 'ᴛʀʏ ᴀɢᴀɪɴ',
                     url = f"https://telegram.me/{client.username}?start={message.command[1]}"
                 )
             ]
