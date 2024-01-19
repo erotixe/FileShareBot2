@@ -1,16 +1,21 @@
+#(©)CodeXBotz
+
+
+
+
 import os
 import asyncio
 from pyrogram import Client, filters, __version__
 from pyrogram.enums import ParseMode
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
-
 from bot import Bot
-from config import ADMINS, FORCE_MSG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT, AUTO_DELETE_TIME, AUTO_DELETE
+from config import ADMINS, FORCE_MSG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT
 from helper_func import subscribed, encode, decode, get_messages
 from database.database import add_user, del_user, full_userbase, present_user
 
-SECONDS = int(os.getenv("SECONDS", "50"))
+SECONDS = int(os.getenv("SECONDS", "10")) #add time im seconds for waitingwaiting before delete
+
 
 @Bot.on_message(filters.command('start') & filters.private & subscribed)
 async def start_command(client: Client, message: Message):
@@ -21,7 +26,8 @@ async def start_command(client: Client, message: Message):
         except:
             pass
     text = message.text
-    if len(text)>7:
+        
+    if len(text) > 7:
         try:
             base64_string = text.split(" ", 1)[1]
         except:
@@ -35,7 +41,7 @@ async def start_command(client: Client, message: Message):
             except:
                 return
             if start <= end:
-                ids = range(start,end+1)
+                ids = range(start, end + 1)
             else:
                 ids = []
                 i = start
@@ -49,7 +55,7 @@ async def start_command(client: Client, message: Message):
                 ids = [int(int(argument[1]) / abs(client.db_channel.id))]
             except:
                 return
-        temp_msg = await message.reply("Wait A Second...")
+        temp_msg = await message.reply("Bro Wait A Second...")
         try:
             messages = await get_messages(client, ids)
         except:
@@ -57,10 +63,12 @@ async def start_command(client: Client, message: Message):
             return
         await temp_msg.delete()
 
+        snt_msgs = []
+
         for msg in messages:
 
             if bool(CUSTOM_CAPTION) & bool(msg.document):
-                caption = CUSTOM_CAPTION.format(previouscaption = "" if not msg.caption else msg.caption.html, filename = msg.document.file_name)
+                caption = CUSTOM_CAPTION.format(previouscaption="" if not msg.caption else msg.caption.html, filename=msg.document.file_name)
             else:
                 caption = "" if not msg.caption else msg.caption.html
 
@@ -70,30 +78,26 @@ async def start_command(client: Client, message: Message):
                 reply_markup = None
 
             try:
-                h = await message.reply_text(f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Movie File/Video will be deleted in <b><u>{AUTO_DELETE} minutes</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward this File/Video to your Saved Messages and Start Download there</b>")
-                k = await client.send_cached_media(
-                    chat_id=message.from_user.id,
-                    snt_ms=msg.get("snt_ms"),
-                    caption=f_caption,
-                    protect_content=msg.get('protect', False),
-                )
-                
-                asyncio.create_task(delete_after_delay(k, AUTO_DELETE_TIME))
-                asyncio.create_task(delete_after_delay(h, AUTO_DELETE_TIME))
+                snt_msg = await msg.copy(chat_id=message.from_user.id, caption=caption, parse_mode=ParseMode.HTML, reply_markup=reply_markup,
+                                          protect_content=PROTECT_CONTENT)
+                await asyncio.sleep(0.5)
+                snt_msgs.append(snt_msg)
             except FloodWait as e:
                 await asyncio.sleep(e.x)
-                logger.warning(f"Floodwait of {e.x} sec.")
-                await client.send_cached_media(
-                    chat_id=message.from_user.id,
-                    snt_ms=msg.get("snt_ms"),
-                    caption=f_caption,
-                    protect_content=msg.get('protect', False),
-                    )
-            except Exception as e:
-                logger.warning(e, exc_info=True)
-                continue
-            await asyncio.sleep(1) 
-        await sts.delete()
+                snt_msg = await msg.copy(chat_id=message.from_user.id, caption=caption, parse_mode=ParseMode.HTML, reply_markup=reply_markup,
+                                          protect_content=PROTECT_CONTENT)
+                snt_msgs.append(snt_msg)
+            except:
+                pass
+
+        await asyncio.sleep(SECONDS)
+
+        for snt_msg in snt_msgs:
+            try:
+                await snt_msg.delete()
+            except:
+                pass
+
         return
     else:
         reply_markup = InlineKeyboardMarkup(
@@ -109,17 +113,18 @@ async def start_command(client: Client, message: Message):
                 ]
             ]
         )
+        
         await message.reply_text(
-            text = START_MSG.format(
-                first = message.from_user.first_name,
-                last = message.from_user.last_name,
-                username = None if not message.from_user.username else '@' + message.from_user.username,
-                mention = message.from_user.mention,
-                id = message.from_user.id
+            text=START_MSG.format(
+                first=message.from_user.first_name,
+                last=message.from_user.last_name,
+                username=None if not message.from_user.username else '@' + message.from_user.username,
+                mention=message.from_user.mention,
+                id=message.from_user.id
             ),
-            reply_markup = reply_markup,
-            disable_web_page_preview = True,
-            quote = True
+            reply_markup=reply_markup,
+            disable_web_page_preview=True,
+            quote=True
         )
         return
 
@@ -147,7 +152,7 @@ async def not_joined(client: Client, message: Message):
             [
                 InlineKeyboardButton(
                     text = 'ᴛʀʏ ᴀɢᴀɪɴ',
-                    url = f"https://telegram.me/{client.username}?start={message.command[1]}"
+                    url = f"https://t.me/{client.username}?start={message.command[1]}"
                 )
             ]
         )
