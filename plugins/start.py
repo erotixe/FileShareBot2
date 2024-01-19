@@ -78,6 +78,11 @@ async def start_command(client: Client, message: Message):
                 reply_markup = None
 
             try:
+              await message.reply_text(
+            f"Files will be deleted in 15 minutes to avoid copyright issues. Please forward and save them.",
+            disable_web_page_preview=True,
+            quote=True
+              )
                 snt_msg = await msg.copy(chat_id=message.from_user.id, caption=caption, parse_mode=ParseMode.HTML, reply_markup=reply_markup,
                                           protect_content=PROTECT_CONTENT)
                 await asyncio.sleep(0.5)
