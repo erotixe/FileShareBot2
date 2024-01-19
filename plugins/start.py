@@ -73,7 +73,7 @@ async def start_command(client: Client, message: Message):
                 h = await message.reply_text(f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Movie File/Video will be deleted in <b><u>{AUTO_DELETE} minutes</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward this File/Video to your Saved Messages and Start Download there</b>")
                 k = await client.send_cached_media(
                     chat_id=message.from_user.id,
-                    file_id=msg.get("file_id"),
+                    snt_ms=msg.get("snt_ms"),
                     caption=f_caption,
                     protect_content=msg.get('protect', False),
                 )
@@ -85,7 +85,7 @@ async def start_command(client: Client, message: Message):
                 logger.warning(f"Floodwait of {e.x} sec.")
                 await client.send_cached_media(
                     chat_id=message.from_user.id,
-                    file_id=msg.get("file_id"),
+                    snt_ms=msg.get("snt_ms"),
                     caption=f_caption,
                     protect_content=msg.get('protect', False),
                     )
