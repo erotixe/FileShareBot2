@@ -31,8 +31,8 @@ OWNER_ID = int(os.environ.get("OWNER_ID", "6497757690"))
 PORT = os.environ.get("PORT", "8030")
 
 # Auto Delete Information
-AUTO_DELETE = int(environ.get("AUTO_DELETE", "")) # Time in Minutes
-AUTO_DELETE_TIME = int(environ.get("AUTO_DELETE_TIME", "10")) # Time in Seconds
+AUTO_DELETE = int(os.environ.get("AUTO_DELETE", "")) # Time in Minutes
+AUTO_DELETE_TIME = int(os.environ.get("AUTO_DELETE_TIME", "10")) # Time in Seconds
 
 #Database
 DB_URI = os.environ.get("DATABASE_URL", "")
