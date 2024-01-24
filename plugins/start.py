@@ -1,4 +1,4 @@
-#(©)CodeXBotz
+#(©)Codeflix_Bots
 
 
 
@@ -57,7 +57,7 @@ async def start_command(client: Client, message: Message):
                 ids = [int(int(argument[1]) / abs(client.db_channel.id))]
             except:
                 return
-        temp_msg = await message.reply(" Wait A Second...")
+        temp_msg = await message.reply("Wait A Second...")
         try:
             messages = await get_messages(client, ids)
         except:
@@ -90,7 +90,7 @@ async def start_command(client: Client, message: Message):
             except:
                 pass
 
-        await message.reply_text("**Files will be deleted in 10 minutes.**\n__Forward to saved messages before downloading__")
+        await message.reply_text("**Tʜɪs Mᴏᴠɪᴇ Fɪʟᴇ/Vɪᴅᴇᴏ Wɪʟʟ Bᴇ Dᴇʟᴇᴛᴇᴅ Iɴ 𝟷𝟶 Mɪɴs 🔰 Dᴜᴇ Tᴏ Cᴏᴘʏʀɪɢʜᴛ Issᴜᴇs.**\n__➸ Pʟᴇᴀsᴇ Fᴏʀᴡᴀʀᴅ Tʜɪs Fɪʟᴇ/Vɪᴅᴇᴏ Tᴏ Yᴏᴜʀ Sᴀᴠᴇᴅ Mᴇssᴀɢᴇs Aɴᴅ Sᴛᴀʀᴛ Dᴏᴡɴʟᴏᴀᴅ Tʜᴇʀᴇ.__")
         await asyncio.sleep(SECONDS)
 
         for snt_msg in snt_msgs:
@@ -106,7 +106,7 @@ async def start_command(client: Client, message: Message):
                     InlineKeyboardButton('ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ', url=f"https://telegram.me/movie7xchat"), 
                     InlineKeyboardButton('ʟᴜᴄʏ', url=f"https://t.me/Lucy_Filter_bot") 
                 ],[
-                    InlineKeyboardButton('ᴊᴏɪɴ ᴍʏ ᴜᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ ', url=f"https://telegram.me/team_netflix")
+                    InlineKeyboardButton('ᴊᴏɪɴ ᴍʏ ᴜᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ ', url=f"https://telegram.me/codeflix_bots")
                 ],[
                     InlineKeyboardButton("ᴍᴏʀᴇ ɪɴғᴏ ", callback_data = "about"),
                     InlineKeyboardButton("ᴄʟᴏsᴇ", callback_data = "close")
